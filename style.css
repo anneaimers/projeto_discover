@@ -1,6 +1,3 @@
-/* ==========================================================
-   PALETA — rosa claro (fundo mais rosado), laranja e amarelo
-   ========================================================== */
 :root {
   --rosa:     #FFC2D8;
   --laranja:  #FF7A2F;
@@ -24,7 +21,6 @@
   --shadow:   0 14px 38px rgba(0, 0, 0, 0.5);
 }
 
-/* ---------- Base ---------- */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
@@ -39,7 +35,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Brilhos de fundo */
 body::before,
 body::after {
   content: "";
@@ -70,7 +65,6 @@ body::after {
 [data-theme="dark"] body::before { opacity: 0.26; }
 [data-theme="dark"] body::after  { opacity: 0.1; }
 
-/* ---------- Card ---------- */
 .card {
   position: relative;
   z-index: 1;
@@ -92,7 +86,6 @@ body::after {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ---------- Perfil ---------- */
 .avatar-ring {
   width: 156px;
   height: 156px;
@@ -127,7 +120,6 @@ h1 {
   color: var(--muted);
 }
 
-/* ---------- Links ---------- */
 .links {
   display: grid;
   gap: 0.75rem;
@@ -176,7 +168,6 @@ h1 {
   transform: translate(2px, -2px);
 }
 
-/* ---------- Redes sociais ---------- */
 .social {
   display: flex;
   justify-content: center;
@@ -201,7 +192,6 @@ h1 {
   outline: none;
 }
 
-/* ---------- Switch de tema ---------- */
 .switch {
   position: fixed;
   top: 1.25rem;
@@ -222,7 +212,6 @@ h1 {
   transition: border-color 0.25s ease, transform 0.18s ease, box-shadow 0.25s ease;
 }
 
-/* Bolinha deslizante */
 .switch::before {
   content: "";
   position: absolute;
@@ -265,7 +254,6 @@ h1 {
   outline-offset: 3px;
 }
 
-/* ---------- Responsivo ---------- */
 @media (max-width: 420px) {
   .card { padding: 2rem 1.5rem 1.5rem; border-radius: 22px; }
   .avatar-ring { width: 128px; height: 128px; }
@@ -274,7 +262,6 @@ h1 {
   .switch { top: 1rem; right: 1rem; }
 }
 
-/* ---------- Acessibilidade ---------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
