@@ -1,0 +1,284 @@
+/* ==========================================================
+   PALETA — rosa claro (fundo mais rosado), laranja e amarelo
+   ========================================================== */
+:root {
+  --rosa:     #FFC2D8;
+  --laranja:  #FF7A2F;
+  --amarelo:  #FFC83D;
+
+  --bg:       #FFE0EC;
+  --surface:  rgba(255, 255, 255, 0.72);
+  --text:     #33191F;
+  --muted:    #93606F;
+  --border:   #FFC5DA;
+  --shadow:   0 14px 38px rgba(255, 122, 47, 0.16);
+  --knob-ink: #33191F;
+}
+
+[data-theme="dark"] {
+  --bg:       #1A0F16;
+  --surface:  rgba(46, 27, 37, 0.72);
+  --text:     #FDECE2;
+  --muted:    #C89BAA;
+  --border:   #4A2A38;
+  --shadow:   0 14px 38px rgba(0, 0, 0, 0.5);
+}
+
+/* ---------- Base ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 4.5rem 1.25rem 3rem;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  transition: background-color 0.35s ease, color 0.35s ease;
+  overflow-x: hidden;
+}
+
+/* Brilhos de fundo */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  width: 52vmax;
+  height: 52vmax;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.4s ease;
+}
+
+body::before {
+  background: radial-gradient(circle, #FF9FC0, transparent 70%);
+  top: -16vmax;
+  left: -16vmax;
+  opacity: 0.75;
+}
+
+body::after {
+  background: radial-gradient(circle, var(--amarelo), transparent 70%);
+  bottom: -20vmax;
+  right: -16vmax;
+  opacity: 0.32;
+}
+
+[data-theme="dark"] body::before { opacity: 0.26; }
+[data-theme="dark"] body::after  { opacity: 0.1; }
+
+/* ---------- Card ---------- */
+.card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 440px;
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 26px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Perfil ---------- */
+.avatar-ring {
+  width: 156px;
+  height: 156px;
+  margin: 0 auto 1.25rem;
+  padding: 3px;
+  border-radius: 50%;
+  background: conic-gradient(from 140deg, var(--amarelo), var(--laranja), #FF9FC0, var(--amarelo));
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--bg);
+  background: var(--bg);
+  display: block;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.bio {
+  margin: 0.6rem auto 0;
+  max-width: 30ch;
+  font-size: 0.94rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+/* ---------- Links ---------- */
+.links {
+  display: grid;
+  gap: 0.75rem;
+  margin: 1.9rem 0 1.75rem;
+}
+
+.link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2.6rem;
+  font-size: 0.94rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: background 0.2s ease, border-color 0.2s ease,
+              color 0.2s ease, transform 0.18s ease, box-shadow 0.2s ease;
+}
+
+.link .arrow {
+  position: absolute;
+  right: 1rem;
+  width: 16px;
+  height: 16px;
+  opacity: 0.45;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.link:hover,
+.link:focus-visible {
+  background: linear-gradient(120deg, var(--amarelo), var(--laranja));
+  border-color: transparent;
+  color: var(--knob-ink);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(255, 122, 47, 0.28);
+  outline: none;
+}
+
+.link:hover .arrow,
+.link:focus-visible .arrow {
+  opacity: 1;
+  transform: translate(2px, -2px);
+}
+
+/* ---------- Redes sociais ---------- */
+.social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.4rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--border);
+}
+
+.social a {
+  color: var(--muted);
+  line-height: 0;
+  transition: color 0.2s ease, transform 0.18s ease;
+}
+
+.social a svg { width: 22px; height: 22px; }
+
+.social a:hover,
+.social a:focus-visible {
+  color: var(--laranja);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+/* ---------- Switch de tema ---------- */
+.switch {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 10;
+  width: 68px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 7px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: border-color 0.25s ease, transform 0.18s ease, box-shadow 0.25s ease;
+}
+
+/* Bolinha deslizante */
+.switch::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--amarelo), var(--laranja));
+  transform: translateX(34px); /* tema claro: bolinha no lado da lua */
+  transition: transform 0.34s cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+
+[data-theme="dark"] .switch::before {
+  transform: translateX(0); /* tema escuro: bolinha no lado do sol */
+}
+
+.switch svg {
+  position: relative;
+  z-index: 1;
+  width: 16px;
+  height: 16px;
+  color: var(--muted);
+  transition: color 0.25s ease;
+}
+
+/* Ícone que está "ativo" fica escuro em cima da bolinha */
+[data-theme="light"] .switch .icon-moon,
+[data-theme="dark"] .switch .icon-sun {
+  color: var(--knob-ink);
+}
+
+.switch:hover {
+  border-color: var(--laranja);
+  box-shadow: 0 8px 20px rgba(255, 122, 47, 0.22);
+}
+
+.switch:focus-visible {
+  outline: 2px solid var(--laranja);
+  outline-offset: 3px;
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 420px) {
+  .card { padding: 2rem 1.5rem 1.5rem; border-radius: 22px; }
+  .avatar-ring { width: 128px; height: 128px; }
+  h1 { font-size: 1.32rem; }
+  .link { padding: 0.9rem 2.4rem; }
+  .switch { top: 1rem; right: 1rem; }
+}
+
+/* ---------- Acessibilidade ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
