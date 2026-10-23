@@ -6,12 +6,10 @@ function applyTheme(theme) {
   root.dataset.theme = theme;
   const isDark = theme === 'dark';
 
-  // role="switch" → o estado vai em aria-checked, não aria-pressed
   toggle.setAttribute('aria-checked', String(isDark));
   toggle.setAttribute('aria-label', isDark ? 'Ativar tema claro' : 'Ativar tema escuro');
 }
 
-// Estado inicial (o script do <head> já definiu data-theme)
 applyTheme(root.dataset.theme === 'dark' ? 'dark' : 'light');
 
 toggle.addEventListener('click', () => {
